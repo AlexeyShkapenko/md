@@ -1,0 +1,55 @@
+				/*
+				$to= $first_name. "<" .$email. ">";
+				$subject = "Prove your registration.";
+				$message = '
+								<html>
+								<head>
+								 <title>Please, prove your M and D account.</title>
+								</head>
+								<body>
+								<p>You have been registrated.</p>
+
+								<a href="http://google.com">Click here to finish.</a>
+								
+								</body>
+								</html>
+							';
+				$headers= "MIME-Version: 1.0\r\n";
+				$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+				
+				$result = mail($to, $subject, $message, $headers, '-fno-reply@yourdomine.ru');
+				
+				if($result)
+					{
+						echo 'все путем';
+					}
+					else
+					{
+						echo 'что-то не так';
+					}
+				
+				*/
+
+gallery.php				
+<?php
+
+if (isset($_POST['submit'])){
+$target_path = "uploads/";
+
+$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
+
+if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+?>
+					<script> 
+					$(document).ready(function() {
+					Materialize.toast('<?php     echo "The file ".  basename( $_FILES['uploadedfile']['name']). 
+    " has been uploaded"; ?>', 10000);
+					});
+					</script>
+					
+					<?php
+} else{
+    echo "There was an error uploading the file, please try again!";
+}
+}
+?>
